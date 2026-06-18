@@ -126,7 +126,7 @@ TPI-Organizacion-empresarial/
 ### 1. Clonar repositorio
 
 ```bash
-git clone https://github.com/usuario/TPI-Organizacion-empresarial.git
+git clone https://github.com/carloscejas1/TPI-Organizacion-empresarial.git
 ```
 
 ### 2. Ingresar al proyecto
