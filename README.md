@@ -72,6 +72,21 @@ docs/BPMN-TO-BE.svg
 
 ---
 
+## ✅ Funcionalidades Implementadas
+
+- Registro de solicitudes de vacaciones.
+- Consulta de solicitudes por DNI.
+- Validación de saldo disponible.
+- Validación de formato de fecha.
+- Generación automática de ID.
+- Aprobación de solicitudes.
+- Rechazo de solicitudes.
+- Control de permisos mediante chat_id.
+- Persistencia de datos en Excel.
+- Sistema de ayuda integrado.
+
+---
+
 ## 🛠 Tecnologías Utilizadas
 
 * Python 3
@@ -164,14 +179,12 @@ Contiene:
 
 Contiene:
 
-ID
-DNI
-FechaInicio
-Dias
-Estado
-FechaSolicitud
-
----
+- ID
+- DNI
+- FechaInicio
+- Dias
+- Estado
+- FechaSolicitud
 
 ## 🔄 Máquina de Estados
 
@@ -200,8 +213,6 @@ CONSULTANDO_SOLICITUDES
 8. RRHH puede aprobar o rechazar la solicitud.
 9. El empleado puede consultar el estado de sus solicitudes.
 
----
-
 ## 🤖 Comandos Disponibles
 
 | Comando | Descripción |
@@ -211,8 +222,6 @@ CONSULTANDO_SOLICITUDES
 | /aprobar ID | Aprobar solicitud (solo administradores) |
 | /rechazar ID | Rechazar solicitud (solo administradores) |
 | /ayuda | Mostrar ayuda |
-
----
 
 ## 🔐 Control de Acceso
 
