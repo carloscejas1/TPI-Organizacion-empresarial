@@ -102,16 +102,18 @@ TPI-Organizacion-empresarial/
 │   └── solicitudes.xlsx
 │
 ├── docs/
-│   ├── BPMN_AS_IS.png
-│   ├── BPMN_TO_BE.png
+│   ├── BMPN-AS-IS.svg
+│   ├── BPMN-TO-BE.svg
 │   ├── diccionario_datos.pdf
 │   ├── manual_usuario.pdf
 │   └── capturas_IA/
 │       └── .gitkeep
 │
 └── screenshots/
-    ├── bot_funcionando.png
-    └── github_repo.png
+    ├── start.png
+    ├── consultar.png
+    ├── aprobar.png
+    ├── github_repo.png
 ```
 
 ---
@@ -162,12 +164,12 @@ Contiene:
 
 Contiene:
 
-* ID de solicitud
-* DNI del empleado
-* Fecha solicitada
-* Cantidad de días
-* Estado de la solicitud
-* Fecha de solicitud
+ID
+DNI
+FechaInicio
+Dias
+Estado
+FechaSolicitud
 
 ---
 
@@ -190,7 +192,7 @@ CONSULTANDO_SOLICITUDES
 
 1. El empleado inicia la solicitud.
 2. El sistema valida el DNI.
-3. Se consulta el saldo disponible.
+3. El sistema muestra el saldo disponible de vacaciones.
 4. Se solicita fecha de inicio.
 5. Se solicita cantidad de días.
 6. Se valida disponibilidad.
@@ -271,23 +273,6 @@ No posee días suficientes para realizar la solicitud.
 
 ```text
 Ingrese una fecha válida.
-```
-
----
-
-## 🧪 Casos de Prueba
-
-Se incluyen pruebas para:
-
-* Consulta de saldo.
-* Registro de solicitudes.
-* Validaciones.
-* Manejo de errores.
-
-Ubicación:
-
-```text
-tests/
 ```
 
 ---
