@@ -23,7 +23,38 @@ Tecnologías Utilizadas
 * GitHub
 * BPMN 2.0
 
-Estructura del Proyecto
+Estructura completa del proyecto
+
+TPI-Organizacion-empresarial/
+│
+├── README.md
+├── requirements.txt
+├── main.py
+├── config.py
+├── database.py
+├── states.py
+├── handlers.py
+│
+├── data/
+│   ├── empleados.xlsx
+│   └── solicitudes.xlsx
+│
+├── docs/
+│   ├── BPMN_AS_IS.png
+│   ├── BPMN_TO_BE.png
+│   ├── diccionario_datos.pdf
+│   ├── manual_usuario.pdf
+│   └── capturas_IA/
+│       └── .gitkeep
+│
+├── tests/
+│   ├── test_saldo.py
+│   ├── test_solicitudes.py
+│   └── test_errores.py
+│
+└── screenshots/
+    ├── bot_funcionando.png
+    └── github_repo.png
 
 ```text
 TPI-Organizacion-empresarial/
