@@ -18,12 +18,12 @@ El objetivo es automatizar el proceso administrativo de **Gestión de Vacaciones
 
 Diseñar una solución tecnológica capaz de automatizar el proceso de solicitud de vacaciones dentro de una organización, permitiendo:
 
-* Consultar saldo disponible de vacaciones.
-* Solicitar días de licencia.
+* Registrar solicitudes de vacaciones.
+* Consultar solicitudes realizadas.
 * Validar reglas de negocio.
-* Simular aprobación o rechazo.
-* Registrar solicitudes.
-* Notificar resultados al empleado.
+* Aprobar o rechazar solicitudes.
+* Gestionar permisos de acceso para RRHH.
+* Mantener trazabilidad de las solicitudes.
 
 ---
 
@@ -109,11 +109,6 @@ TPI-Organizacion-empresarial/
 │   └── capturas_IA/
 │       └── .gitkeep
 │
-├── tests/
-│   ├── test_saldo.py
-│   ├── test_solicitudes.py
-│   └── test_errores.py
-│
 └── screenshots/
     ├── bot_funcionando.png
     └── github_repo.png
@@ -172,6 +167,7 @@ Contiene:
 * Fecha solicitada
 * Cantidad de días
 * Estado de la solicitud
+* Fecha de solicitud
 
 ---
 
@@ -182,33 +178,48 @@ El chatbot utiliza una máquina de estados para mantener el contexto de cada usu
 Estados principales:
 
 ```text
-INICIO
 ESPERANDO_DNI
-VALIDANDO_USUARIO
-MOSTRANDO_SALDO
 ESPERANDO_FECHA
 ESPERANDO_DIAS
-VALIDANDO_SOLICITUD
-ESPERANDO_APROBACION
-SOLICITUD_APROBADA
-SOLICITUD_RECHAZADA
+CONSULTANDO_SOLICITUDES
 ```
 
 ---
 
 ## 🌳 Flujo del Proceso
 
-1. El usuario inicia conversación.
-2. El bot solicita identificación.
-3. Consulta saldo disponible.
-4. Solicita fecha de inicio.
-5. Solicita cantidad de días.
-6. Verifica reglas de negocio.
-7. Simula aprobación.
-8. Registra solicitud.
-9. Informa resultado al usuario.
+1. El empleado inicia la solicitud.
+2. El sistema valida el DNI.
+3. Se consulta el saldo disponible.
+4. Se solicita fecha de inicio.
+5. Se solicita cantidad de días.
+6. Se valida disponibilidad.
+7. Se registra la solicitud con estado "Pendiente".
+8. RRHH puede aprobar o rechazar la solicitud.
+9. El empleado puede consultar el estado de sus solicitudes.
 
 ---
+
+## 🤖 Comandos Disponibles
+
+| Comando | Descripción |
+|----------|------------|
+| /start | Iniciar solicitud de vacaciones |
+| /consultar | Consultar solicitudes por DNI |
+| /aprobar ID | Aprobar solicitud (solo administradores) |
+| /rechazar ID | Rechazar solicitud (solo administradores) |
+| /ayuda | Mostrar ayuda |
+
+---
+
+## 🔐 Control de Acceso
+
+Las acciones de aprobación y rechazo están restringidas a usuarios autorizados mediante la validación del chat_id de Telegram.
+
+Solo los administradores definidos en la configuración pueden ejecutar:
+
+- /aprobar ID
+- /rechazar ID
 
 ## 🚦 Gateways (Decisiones BPMN)
 
