@@ -6,6 +6,8 @@ from telegram.ext import ContextTypes
 import states
 import database
 
+from config import ADMIN_IDS
+
 usuarios = {}
 solicitudes = {}
 
@@ -168,7 +170,10 @@ async def mensajes(update: Update, context: ContextTypes.DEFAULT_TYPE):
             dias,
 
             "Estado":
-            "Pendiente"
+            "Pendiente",
+
+            "FechaSolicitud": 
+            datetime.now().strftime("%d/%m/%Y")
             }
 
         database.guardar_solicitud(solicitud)
@@ -180,6 +185,10 @@ async def mensajes(update: Update, context: ContextTypes.DEFAULT_TYPE):
         usuarios.pop(usuario)
 
 async def aprobar(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    if update.message.chat_id not in ADMIN_IDS:
+        await update.message.reply_text("No tiene permisos para realizar esta acción.")
+        return
 
     try:
 
@@ -215,6 +224,11 @@ async def aprobar(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Solicitud {id_solicitud} aprobada.")
 
 async def rechazar(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    if update.message.chat_id not in ADMIN_IDS:
+        await update.message.reply_text(
+        "No tiene permisos para realizar esta acción.")
+        return
 
     try:
 
