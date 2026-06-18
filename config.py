@@ -6,5 +6,5 @@ load_dotenv()
 TOKEN = os.getenv("TOKEN")
 
 ADMIN_IDS = [
-    8729004998
+    int(os.getenv("ADMIN_ID"))
 ]
