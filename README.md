@@ -57,7 +57,7 @@ Diagrama que representa el proceso actual de gestión de vacaciones.
 Ubicación:
 
 ```text
-docs/BPMN_AS_IS.png
+docs/BMPN-AS-IS.svg
 ```
 
 ### Proceso TO-BE
@@ -67,7 +67,7 @@ Diagrama que representa el proceso automatizado mediante chatbot.
 Ubicación:
 
 ```text
-docs/BPMN_TO_BE.png
+docs/BPMN-TO-BE.svg
 ```
 
 ---
