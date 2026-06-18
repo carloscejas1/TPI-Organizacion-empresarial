@@ -65,3 +65,88 @@ def obtener_siguiente_id():
     except:
 
         return 1
+    
+def obtener_solicitudes(dni):
+
+    try:
+
+        solicitudes = pd.read_excel(
+            ARCHIVO_SOLICITUDES
+        )
+
+        return solicitudes[
+            solicitudes["DNI"] == int(dni)
+        ]
+
+    except:
+
+        return pd.DataFrame()
+    
+def aprobar_solicitud(id_solicitud):
+
+    solicitudes = pd.read_excel(
+        ARCHIVO_SOLICITUDES
+    )
+
+    solicitudes.loc[
+        solicitudes["ID"] == id_solicitud,
+        "Estado"
+    ] = "Aprobada"
+
+    solicitudes.to_excel(
+        ARCHIVO_SOLICITUDES,
+        index=False
+    )
+
+def rechazar_solicitud(id_solicitud):
+
+    solicitudes = pd.read_excel(
+        ARCHIVO_SOLICITUDES
+    )
+
+    solicitudes.loc[
+        solicitudes["ID"] == id_solicitud,
+        "Estado"
+    ] = "Rechazada"
+
+    solicitudes.to_excel(
+        ARCHIVO_SOLICITUDES,
+        index=False
+    )
+
+def existe_solicitud(id_solicitud):
+
+    try:
+
+        solicitudes = pd.read_excel(
+            ARCHIVO_SOLICITUDES
+        )
+
+        return (
+            solicitudes["ID"] == id_solicitud
+        ).any()
+
+    except:
+
+        return False
+    
+def obtener_estado_solicitud(id_solicitud):
+
+    try:
+
+        solicitudes = pd.read_excel(
+            ARCHIVO_SOLICITUDES
+        )
+
+        resultado = solicitudes[
+            solicitudes["ID"] == id_solicitud
+        ]
+
+        if len(resultado) == 0:
+            return None
+
+        return resultado.iloc[0]["Estado"]
+
+    except:
+
+        return None
