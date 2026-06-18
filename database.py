@@ -40,3 +40,28 @@ def guardar_solicitud(datos):
         ARCHIVO_SOLICITUDES,
         index=False
     )
+
+def obtener_siguiente_id():
+
+    try:
+
+        solicitudes = pd.read_excel(
+            ARCHIVO_SOLICITUDES
+        )
+
+        if solicitudes.empty:
+            return 1
+
+        if "ID" not in solicitudes.columns:
+            return 1
+
+        ids = solicitudes["ID"].dropna()
+
+        if ids.empty:
+            return 1
+
+        return int(ids.max()) + 1
+
+    except:
+
+        return 1

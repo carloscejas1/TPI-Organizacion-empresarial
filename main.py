@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from telegram import Update
 from telegram.ext import (
     Application,
@@ -24,7 +26,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "Bienvenido al sistema de gestión de vacaciones.\n\nIngrese su DNI:"
     )
-
 
 async def mensajes(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
@@ -67,6 +68,21 @@ async def mensajes(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Estado: esperando fecha
     elif estado == states.ESPERANDO_FECHA:
 
+        try:
+            fecha = datetime.strptime(
+                texto,
+                "%d/%m/%Y"
+            )
+
+        except ValueError:
+
+            await update.message.reply_text(
+                "Fecha inválida.\nUse formato dd/mm/aaaa"
+            )
+
+            return
+
+
         solicitudes[usuario]["Fecha"] = texto
 
         usuarios[usuario] = states.ESPERANDO_DIAS
@@ -99,10 +115,20 @@ async def mensajes(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
 
         solicitud = {
-            "DNI": solicitudes[usuario]["DNI"],
-            "FechaInicio": solicitudes[usuario]["Fecha"],
-            "Dias": dias,
-            "Estado": "Pendiente"
+            "ID":
+            database.obtener_siguiente_id(),
+
+            "DNI":
+            solicitudes[usuario]["DNI"],
+
+            "FechaInicio":
+            solicitudes[usuario]["Fecha"],
+
+            "Dias":
+            dias,
+
+            "Estado":
+            "Pendiente"
             }
 
         database.guardar_solicitud(solicitud)
@@ -121,23 +147,6 @@ def main():
     app = Application.builder().token(TOKEN).build()
 
     print("Aplicación creada")
-
-    app.add_handler(
-        CommandHandler("start", start)
-    )
-
-    print("Handlers cargados")
-
-    app.add_handler(
-        MessageHandler(
-            filters.TEXT & ~filters.COMMAND,
-            mensajes
-        )
-    )
-
-    app.run_polling()
-
-    app = Application.builder().token(TOKEN).build()
 
     app.add_handler(
         CommandHandler("start", start)
