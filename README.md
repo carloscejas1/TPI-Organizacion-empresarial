@@ -119,10 +119,7 @@ TPI-Organizacion-empresarial/
 ├── docs/
 │   ├── BMPN-AS-IS.svg
 │   ├── BPMN-TO-BE.svg
-│   ├── diccionario_datos.pdf
-│   ├── manual_usuario.pdf
-│   └── capturas_IA/
-│       └── .gitkeep
+│   ├── Presentación-TPI-OE.pdf
 │
 └── screenshots/
     ├── start.png
@@ -295,39 +292,11 @@ Para el desarrollo del proyecto se utilizaron herramientas de IA como apoyo para
 * Diseño de casos de prueba.
 * Asistencia en programación Python.
 
-Las evidencias se encuentran en:
-
-```text
-docs/capturas_IA/
-```
-
----
-
 ## 📚 Documentación
 
 ### Manual de Usuario
 
-```text
-docs/manual_usuario.pdf
-```
-
-### Diccionario de Datos
-
-```text
-docs/diccionario_datos.pdf
-```
-
----
-
-## 📸 Evidencias
-
-Capturas del funcionamiento del sistema:
-
-```text
-screenshots/
-```
-
----
+```docs/Presentación-TPI-OE.pdf
 
 ## 📄 Licencia
 
