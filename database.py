@@ -150,3 +150,23 @@ def obtener_estado_solicitud(id_solicitud):
     except:
 
         return None
+    
+def dias_pendientes(dni):
+
+    try:
+
+        solicitudes = pd.read_excel(
+            ARCHIVO_SOLICITUDES
+        )
+
+        resultado = solicitudes[
+            (solicitudes["DNI"] == int(dni))
+            &
+            (solicitudes["Estado"] == "Pendiente")
+        ]
+
+        return resultado["Dias"].sum()
+
+    except:
+
+        return 0
