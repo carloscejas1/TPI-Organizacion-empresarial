@@ -93,19 +93,28 @@ async def mensajes(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return
 
+        saldo_original = empleado["Saldo"]
+
+        dias_reservados = database.dias_pendientes(texto)
+
+        saldo_disponible = (
+            saldo_original
+            - dias_reservados
+            )
+
         solicitudes[usuario] = {
             "DNI": texto,
             "Nombre": empleado["Nombre"],
-            "Saldo": empleado["Saldo"]
-        }
+            "Saldo": saldo_disponible
+            }
 
         usuarios[usuario] = states.ESPERANDO_FECHA
 
         await update.message.reply_text(
             f"Hola {empleado['Nombre']}.\n"
-            f"Saldo disponible: {empleado['Saldo']} días.\n\n"
+            f"Saldo disponible: {saldo_disponible} días.\n\n"
             f"Ingrese la fecha de inicio:"
-        )
+            )
 
     # Estado: esperando fecha
     elif estado == states.ESPERANDO_FECHA:
