@@ -18,7 +18,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     usuarios[usuario] = states.ESPERANDO_DNI
 
     await update.message.reply_text(
-        "Bienvenido al sistema de gestión de vacaciones.\n\nIngrese su DNI:"
+        "Bienvenido al sistema de gestión de vacaciones.\n Ingresá tu número de documento: "
     )
 
 async def consultar(update: Update,
@@ -89,7 +89,7 @@ async def mensajes(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if empleado is None:
             await update.message.reply_text(
-                "Empleado no encontrado."
+                "No encontré ese DNI en el sistema. Verificá el número e intentá de nuevo."
             )
             return
 
@@ -112,8 +112,8 @@ async def mensajes(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await update.message.reply_text(
             f"Hola {empleado['Nombre']}.\n"
-            f"Saldo disponible: {saldo_disponible} días.\n\n"
-            f"Ingrese la fecha de inicio:"
+            f"Tenés {saldo_disponible} días disponibles.\n"
+            f"Ingresá la fecha de inicio:"
             )
 
     # Estado: esperando fecha
@@ -128,7 +128,7 @@ async def mensajes(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except ValueError:
 
             await update.message.reply_text(
-                "Fecha inválida.\nUse formato dd/mm/aaaa"
+                "Formato de fecha incorrecto. \nIngresá la fecha así: DD/MM/AAAA."
             )
 
             return
@@ -139,7 +139,7 @@ async def mensajes(update: Update, context: ContextTypes.DEFAULT_TYPE):
         usuarios[usuario] = states.ESPERANDO_DIAS
 
         await update.message.reply_text(
-            "Ingrese la cantidad de días:"
+            "Ingrese la cantidad de días: "
         )
 
     # Estado: esperando días
@@ -158,7 +158,7 @@ async def mensajes(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if dias > saldo:
 
             await update.message.reply_text(
-                "No posee saldo suficiente."
+                "Solicitás más días de los que tenés disponibles. Elegí un período más corto. "
             )
 
             usuarios.pop(usuario)
