@@ -117,15 +117,9 @@ TPI-Organizacion-empresarial/
 │   └── solicitudes.xlsx
 │
 ├── docs/
-│   ├── BMPN-AS-IS.svg
-│   ├── BPMN-TO-BE.svg
-│   ├── Presentación-TPI-OE.pdf
-│
-└── screenshots/
-    ├── start.png
-    ├── consultar.png
-    ├── aprobar.png
-    ├── github_repo.png
+    ├── BMPN-AS-IS.svg
+    ├── BPMN-TO-BE.svg
+    ├── Presentación-TPI-OE.pdf
 ```
 
 ---
@@ -150,6 +144,25 @@ cd TPI-Organizacion-empresarial
 pip install -r requirements.txt
 ```
 
+### 4. Crear token de bot con @botfather
+En Telegram ir a @botfather
+```
+/start
+/newbot
+Ingresar nombre y usuario de bot
+```
+
+### 4. Crear .env
+En la raiz del repositorio crear un archivo .env 
+e ingresar las siguientes variables:
+```
+TOKEN = "token_de_botfather"
+
+ADMIN_ID = ID_Telegram
+```
+El id de administrador es necesario para aprobar
+las solicitudes y se obtiene con el bot @userinfo
+
 ---
 
 ## ▶️ Ejecución
@@ -157,6 +170,8 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+Con el programa en ejecución ingresar a Telegram
+con el @bot-id y utilizar el bot.
 
 ---
 
